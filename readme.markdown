@@ -2,6 +2,8 @@
 
 return an array of all the bytes in a unicode string
 
+[![build status](https://secure.travis-ci.org/substack/utf8-bytes.png)](http://travis-ci.org/substack/utf8-bytes)
+
 This module is like `Buffer(str).toJSON()`, but without using `Buffer`.
 
 # example
