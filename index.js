@@ -5,7 +5,7 @@ module.exports = function (str) {
         if (c >= 2048) {
             bytes.push(
                 0xe0 + Math.floor(c / 64 / 64),
-                0x80 + Math.floor((c - 32) / 64) % 64,
+                0x80 + Math.floor(c / 64) % 64,
                 0x80 + c % 64
             );
         }
