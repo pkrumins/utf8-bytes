@@ -14,13 +14,25 @@ test('some canned examples', function (t) {
     t.end();
 });
 
-test('all the code points', function (t) {
+test('1-3 byte code points', function (t) {
     for (var i = 0; i < 65536; i += Math.ceil(Math.log(i + 2) / Math.log(2))) {
         var s = String.fromCharCode(i);
         t.deepEqual(bytes(s), bufArray(s));
     }
     s = String.fromCharCode(65535);
     t.deepEqual(bytes(s), bufArray(s));
+    t.end();
+});
+
+test('astral symbols', function (t) {
+    for (var i = 0xd800; i <= 0xdbff; i += 8) {
+        for (var j = 0xdc00; j <= 0xdfff; j += 8) {
+            var s = String.fromCharCode(i, j);
+            var xs = bytes(s);
+            t.equal(xs.length, 4);
+            t.deepEqual(xs, bufArray(s));
+        }
+    }
     t.end();
 });
 
