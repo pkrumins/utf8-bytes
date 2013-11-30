@@ -3,9 +3,14 @@ var test = require('tape');
 
 test('some canned examples', function (t) {
     t.deepEqual(bytes('[☉,☼]'), bufArray('[☉,☼]'));
+    t.deepEqual(
+        bytes('\uD834\uDF06'),
+        [ 240, 157, 140, 134 ]
+    );
     t.end();
 });
 
+return;
 test('all the code points', function (t) {
     t.plan(65536);
     for (var i = 0; i < 65536; i++) {
