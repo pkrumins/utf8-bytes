@@ -15,11 +15,13 @@ test('some canned examples', function (t) {
 });
 
 test('all the code points', function (t) {
-    t.plan(65536);
-    for (var i = 0; i < 65536; i++) {
+    for (var i = 0; i < 65536; i += Math.ceil(Math.log(i + 2) / Math.log(2))) {
         var s = String.fromCharCode(i);
         t.deepEqual(bytes(s), bufArray(s));
     }
+    s = String.fromCharCode(65535);
+    t.deepEqual(bytes(s), bufArray(s));
+    t.end();
 });
 
 function bufArray (s) {
