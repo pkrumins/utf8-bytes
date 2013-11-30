@@ -7,10 +7,13 @@ test('some canned examples', function (t) {
         bytes('\uD834\uDF06'),
         [ 240, 157, 140, 134 ]
     );
+    t.deepEqual(
+        bytes('\uD835\uDC01'),
+        [ 240, 157, 144, 129 ]
+    );
     t.end();
 });
 
-return;
 test('all the code points', function (t) {
     t.plan(65536);
     for (var i = 0; i < 65536; i++) {
