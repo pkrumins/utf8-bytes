@@ -17,7 +17,11 @@ test('some canned examples', function (t) {
 test('1-3 byte code points', function (t) {
     for (var i = 0; i < 65536; i += Math.ceil(Math.log(i + 2) / Math.log(2))) {
         var s = String.fromCharCode(i);
-        t.deepEqual(bytes(s), bufArray(s));
+        var xs = bytes(s);
+        if (i < 129) t.equal(xs.length, 1)
+        else if (i < 0x0800) t.equal(xs.length, 2)
+        else t.equal(xs.length, 3)
+        t.deepEqual(xs, bufArray(s));
     }
     s = String.fromCharCode(65535);
     t.deepEqual(bytes(s), bufArray(s));
